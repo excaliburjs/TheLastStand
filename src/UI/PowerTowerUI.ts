@@ -35,8 +35,10 @@ export class PowerTowerMenu extends UIPanel {
   }
 
   closeMenu() {
-    (this.parent as PowerPlantTower).isUIShowing = false;
-    this.kill();
+    if (this.parent) {
+      (this.parent as PowerPlantTower).isUIShowing = false;
+      this.kill();
+    }
   }
 }
 
