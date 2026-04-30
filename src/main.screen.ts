@@ -511,6 +511,13 @@ export class MainScreen extends LitElement {
     this.requestUpdate();
   }
 
+  public get canStartWave() {
+    if (this.waveManager) {
+      return this.waveManager.getWaveState() !== 'active';
+    }
+    return false;
+  }
+
   public showShop() {
     this.hideAll();
     Resources.ShopOpen.play(0.2);
@@ -1086,10 +1093,10 @@ export class MainScreen extends LitElement {
       </div>
 
       <div class="bottom-left">
-        <button @click=${this.startNextWave} @mouseover=${this._handleHover} @mouseleave=${this._handleLeave}>Start Wave</button>
+        <button 
+          ?disabled=${!this.canStartWave}
+          @click=${this.startNextWave} @mouseover=${this._handleHover} @mouseleave=${this._handleLeave}>Start Wave</button>
         <button @click=${this.showShop} @mouseover=${this._handleHover} @mouseleave=${this._handleLeave}>Shop</button>
-        <!-- <button @click=${this.showInventory} @mouseover=${this._handleHover} @mouseleave=${this._handleLeave}>Inventory</button> -->
-        <!-- <button>Settings</button> -->
         <div class="stats">
           <div class="money">
             <span class="icon">💰</span>

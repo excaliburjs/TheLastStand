@@ -222,6 +222,10 @@ export class EnemyWaveController {
     this._numberRemainaing = STARTING_NUM_ENEMIES;
   }
 
+  getWaveState() {
+    return this._waveState;
+  }
+
   setNewNavMap(navmap: Graph<PositionNodeData>) {
     this._navmap = navmap;
   }

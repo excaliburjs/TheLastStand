@@ -152,7 +152,7 @@ export class TankEnemy extends Enemy {
     this.ac = new AnimationComponent(TankEnemyAnimations);
     this.addComponent(this.ac);
     this.ac.set("Right");
-    console.log(this.ac);
+    // console.log(this.ac);
 
     this.fsm.register(
       new IdleState(this),
