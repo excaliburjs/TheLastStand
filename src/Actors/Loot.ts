@@ -24,7 +24,7 @@ export class LootCollector extends Actor {
   eventEmitter: EventEmitter<LootCollectionEvents> = new EventEmitter<LootCollectionEvents>();
   constructor() {
     super({
-      pos: vec(1760, 20),
+      pos: vec(125, 800),
       width: 30,
       height: 30,
       color: Color.Transparent,

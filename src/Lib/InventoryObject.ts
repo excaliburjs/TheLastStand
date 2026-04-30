@@ -44,6 +44,16 @@ export class InventoryObject {
     InventoryObject._events.emit('money', newValue);
   }
 
+  static get numScrap(): number {
+    return InventoryObject.scrapItems.get("Missle Chassis")! +
+          InventoryObject.scrapItems.get("Laser Optics")! +
+          InventoryObject.scrapItems.get("Drone Engine")! +
+          InventoryObject.scrapItems.get("Burst Shells")! +
+          InventoryObject.scrapItems.get("Power Core")! + 
+          InventoryObject.scrapItems.get("Power Cell")! +
+          InventoryObject.scrapItems.get("Servos")!;
+  }
+
   static resetScrap() {
     InventoryObject.scrapItems.set("Missle Chassis", 0);
     InventoryObject.scrapItems.set("Laser Optics", 0);

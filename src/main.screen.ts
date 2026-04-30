@@ -239,6 +239,23 @@ export class MainScreen extends LitElement {
     .shop {
       width: 100%;
       height: 80%;
+
+      .number {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+
+      ul,li {
+        position: relative;
+        list-style-type: none;
+      }
+
+      img {
+        width: 100%;
+        image-rendering: pixelated;
+        height: 100%;
+      }
     }
 
     .shop .shop-content {
@@ -597,6 +614,18 @@ export class MainScreen extends LitElement {
     this.requestUpdate();
   }
 
+  public getImageForScrap(type: string) {
+    switch(type) {
+      case "Missle Chassis": return Resources.missleChassis.path;
+      case "Laser Optics": return Resources.laserOpticsDrop.path;
+      case "Drone Engine": return Resources.droneEngineDrop.path;
+      case "Burst Shells": return Resources.droneEngineDrop.path;
+      case "Power Core": return Resources.powercore.path;
+      case "Power Cell": return Resources.powercell.path;
+      case "Servos": return Resources.powercell.path;
+    }
+  }
+
   public possibleItems: PartOffer[] = [
     { type: "burst", display: "Burst", price: 2, width: 2, height: 3 },
     { type: "missle", display: "Missle", price: 3, width: 1, height: 4 },
@@ -928,18 +957,22 @@ export class MainScreen extends LitElement {
 
             <div class="sell">
               <!-- Maybe things can become more valuable? -->
-              <button @click=${this.sellScrap} @mouseover=${this._handleHover} @mouseleave=${this._handleLeave}>Sell Scrap</button>
+              <button 
+                ?disabled=${InventoryObject.numScrap === 0}
+                @click=${this.sellScrap} 
+                @mouseover=${this._handleHover} 
+                @mouseleave=${this._handleLeave}>Sell Scrap</button>
 
               <ul class="content">
                 ${repeat(
-      InventoryObject.scrapItems,
-      e => e[0],
-      ([type, number]) => {
-        if (number) {
-          return html`<li>${type}:${number}</li>`;
-        }
-      },
-    )}
+                  InventoryObject.scrapItems,
+                  e => e[0],
+                  ([type, number]) => {
+                    if (number) {
+                      return html`<li><img .src=${this.getImageForScrap(type)}/><span class="number">x${number}</span></li>`;
+                    }
+                  },
+                )}
               </ul>
             </div>
           </div>

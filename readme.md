@@ -1,4 +1,4 @@
-# THE LAST STAND
+# THE LAST STAND (Post-Jam Version)
 
 ![GameDev.js Jam 2026](https://img.shields.io/badge/GameDev.js%20Jam-2026-blue)
 
